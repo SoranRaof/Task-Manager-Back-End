@@ -1,7 +1,7 @@
 require("./db/connection");
 const express = require("express");
 const app = express();
-const tasks = require("./routes/tasks");
+const tasks = require("./routes/task-routes");
 const connectDB = require("./db/connection");
 require("dotenv").config();
 //middleware
