@@ -11,6 +11,13 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
+
+// Set up task-related routes
+app.use("/api/tasks", tasks);
+
+app.use(notFound);
+app.use(errorHandlerMiddleware);
+
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -19,12 +26,6 @@ app.use((req, res, next) => {
   );
   next();
 });
-
-// Set up task-related routes
-app.use("/api/tasks", tasks);
-
-app.use(notFound);
-app.use(errorHandlerMiddleware);
 
 const start = async () => {
   try {
