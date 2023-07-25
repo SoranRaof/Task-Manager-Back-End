@@ -17,8 +17,15 @@ const getTaskById = asyncWrapper(async (req, res, next) => {
 });
 
 const postTask = asyncWrapper(async (req, res) => {
-  const task = await Task.create(req.body);
-  task.date = new Date(req.body.date);
+  const { name, comments, completed } = req.body;
+  const createdAt = Date.now();
+  const newTask = {
+    name: name,
+    comments: comments,
+    completed: completed,
+    createdAt: createdAt,
+  };
+  const task = await Task.create(newTask);
   res.status(201).json({ task });
 });
 
